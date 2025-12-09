@@ -7,5 +7,5 @@ description = {
   homepage = "https://github.com/your-repo/kong-opafy",
   license = "MIT",
 }
-dependencies = { "lua >= 5.1", "kong >= 3.8", "lua-resty-http", "lua-cjson" }
+dependencies = { "lua >= 5.1", "kong >= 3.8", "lua-resty-http" }
 build = { type = "none" }
