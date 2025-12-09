@@ -1,15 +1,15 @@
-local PLUGIN_NAME = "kong-opafy"
+local typedefs = require "kong.db.schema.typedefs"
 
 return {
-  name = PLUGIN_NAME,
+  name = "kong-opafy",
   fields = {
-    { config = {
+    { consumer = typedefs.no_consumer },
+    { protocols = typedefs.protocols_http },
+    {
+      config = {
         type = "record",
         fields = {
-          { opa_host = { type = "string", required = true }, },
-          { opa_port = { type = "number", default = 8181 }, },
-          { include_consumer = { type = "boolean", default = false }, },
-          { timeout = { type = "number", default = 5000 }, },
+          { opa_url = { type = "string", required = true } },
         },
       },
     },
