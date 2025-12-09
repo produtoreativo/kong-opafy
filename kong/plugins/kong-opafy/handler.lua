@@ -39,6 +39,8 @@ function KongOPAfy:access(config)
 
   local url = config.opa_url .. "/v1/data/authz/allow"
 
+  kong.log.inspect(input, "OPA INPUT PAYLOAD")
+
   local res, err = httpc:request_uri(url, {
     method = "POST",
     body = cjson.encode({ input = input }),
