@@ -8,13 +8,24 @@ local KongOPAfy = {
 
 function KongOPAfy:access(config)
   -- monta o input para o OPA
-  local input = {}
 
-  input.headers = kong.request.get_headers()
+  local input = {
+    method = kong.request.get_method(),
+    path   = kong.request.get_path(),
+    raw_path = kong.request.get_raw_path(),
+    headers = kong.request.get_headers(),
+    host = kong.request.get_host(),
+    scheme = kong.request.get_scheme(),
+    port = kong.request.get_forwarded_port(),
+    query = kong.request.get_query(),
 
-  input.query = kong.request.get_query()
+    route = kong.router.get_route(),
+    service = kong.router.get_service(),
 
-  local body_raw = kong.request.get_raw_body()
+    consumer = kong.client.get_consumer(),
+    credential = kong.client.get_credential(),
+    ip = kong.client.get_forwarded_ip()
+  }
 
   if body_raw then
     -- tenta decodificar o JSON
